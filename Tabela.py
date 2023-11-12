@@ -8,6 +8,23 @@ class Tabela:
         self.__worksheet = self.__workbook[worksheet]
         
 
-    def get_row(self,row_index):
-        return self.__worksheet[row_index]
+    def get_row(self,row):
+        return self.__worksheet[row]
+
+    def get_column(self, column, start=1):
+
+        cells = []
+        i = start
+
+        while(True):
+            if self.__worksheet[f"{column+str(i)}"].value == None:
+                break
+
+            cells.append(self.__worksheet[f"{column+str(i)}"])
+            i += 1
+
+        return cells 
+
+    def get_cell(self,cell_coordinate):
+        return self.__worksheet[cell_coordinate].value
 
