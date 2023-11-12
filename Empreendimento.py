@@ -1,6 +1,6 @@
 class Empreendimento:
 
-    def __init__(self,title,url,price,description,city,category):
+    def __init__(self,title,url,price,description,city):
 
         self.__title = title
         self.__url = url
@@ -11,10 +11,12 @@ class Empreendimento:
         self.__email = "siteimovelnet@gmail.com"
         self.__category = "imóveis" 
 
-        self.emprendimentos__list = []
 
     def __str__(self):
-        return f"Titulo: {self.__title}\nUrl: {self.__url}\nPreço: {self.__price}\n Descrição: {self.__description}\nCidade: {self.__city}\nContato: {self.__contact}\ne-mail:{self.__email}\ncategoria:{self.__category}" 
+        return f"Titulo: {self.__title}\nUrl: {self.__url}\nPreço: {self.__price}\nDescrição: {self.__description}\nCidade: {self.__city}\nContato: {self.__contact}\ne-mail:{self.__email}\ncategoria:{self.__category}" 
+
+    def __iter__(self):
+        return Empreendimento.emprendimentos__list
 
     def get_title(self):
         
@@ -47,12 +49,3 @@ class Empreendimento:
     def get_category(self):
         
         return self.__category
-
-
-    def add_empreendimento(self,empreendimento):
-
-        self.emprendimentos__list.append(empreendimento)
-
-    def get_lista_empreendimentos(self):
-
-        return emprendimentos__list

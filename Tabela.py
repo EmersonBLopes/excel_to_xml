@@ -28,3 +28,6 @@ class Tabela:
     def get_cell(self,cell_coordinate):
         return self.__worksheet[cell_coordinate].value
 
+    def get_worksheet(self):
+        return self.__worksheet
+
