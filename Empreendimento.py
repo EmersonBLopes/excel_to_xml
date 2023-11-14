@@ -1,4 +1,8 @@
+from TagsNames import TagsNames
 class Empreendimento:
+
+    tags_name_list = TagsNames("title","url","description","email","category","price","city","contact")
+
 
     def __init__(self,title,url,price,description,city):
 
@@ -20,32 +24,32 @@ class Empreendimento:
 
     def get_title(self):
         
-        return self.__title
+        return [self.__title,Empreendimento.tags_name_list.title]
 
     def get_url(self):
         
-        return self.__url
+        return [self.__url,Empreendimento.tags_name_list.url]
 
     def get_price(self):
         
-        return self.__price
+        return [self.__price,Empreendimento.tags_name_list.price]
 
     def get_description(self):
         
-        return self.__description
+        return [self.__description,Empreendimento.tags_name_list.description]
 
     def get_city(self):
         
-        return self.__city
+        return [self.__city,Empreendimento.tags_name_list.city]
 
     def get_contact(self):
         
-        return self.__contact
+        return [self.__contact,Empreendimento.tags_name_list.contact]
 
     def get_email(self):
         
-        return self.__email
+        return [self.__email,Empreendimento.tags_name_list.email]
 
     def get_category(self):
         
-        return self.__category
+        return [self.__category,Empreendimento.tags_name_list.category]
