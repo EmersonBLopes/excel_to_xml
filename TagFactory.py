@@ -46,6 +46,11 @@ class TagFactory:
     def get_child(self,child_number):
         return self.__children[child_number]
 
-    def append_child(self,child):
-        child.set_identation(self.__indentation_space + 1)
-        self.__children.append(child)
+    def append_child(self,element):
+
+        element.set_identation(self.__indentation_space + 1)
+
+        for child in element.__children:
+            child.set_identation(element.__indentation_space+1)
+
+        self.__children.append(element)
