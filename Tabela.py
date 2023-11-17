@@ -13,17 +13,16 @@ class Tabela:
 
     def get_column(self, column, start=1):
 
-        cells = []
-        i = start
+    
 
-        while(True):
-            if self.__worksheet[f"{column+str(i)}"].value == None:
-                break
+        # while(True):
+        #     if self.__worksheet[f"{column+str(i)}"].value == None:
+        #         break
 
-            cells.append(self.__worksheet[f"{column+str(i)}"])
-            i += 1
+        #     cells.append(self.__worksheet[f"{column+str(i)}"])
+        #     i += 1
 
-        return cells 
+        return self.__worksheet[column] 
 
     def get_cell(self,cell_coordinate):
         return self.__worksheet[cell_coordinate].value
