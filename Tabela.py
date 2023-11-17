@@ -12,16 +12,6 @@ class Tabela:
         return self.__worksheet[row]
 
     def get_column(self, column, start=1):
-
-    
-
-        # while(True):
-        #     if self.__worksheet[f"{column+str(i)}"].value == None:
-        #         break
-
-        #     cells.append(self.__worksheet[f"{column+str(i)}"])
-        #     i += 1
-
         return self.__worksheet[column] 
 
     def get_cell(self,cell_coordinate):
