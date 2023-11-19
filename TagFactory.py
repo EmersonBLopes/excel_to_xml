@@ -13,7 +13,7 @@ class TagFactory:
         msg = self.to_ident(self.__indentation_space) 
 
         if self.__declaration_tag:
-            return "<?xml version='1.0' encoding='UTF-8'?>"
+            return "<?xml version='1.0' encoding='UTF-8'?>\n"
         #return if cdata
         if self.__cdata:
             msg += f"<{self.__name}>![CDATA[{self.__data}]]</{self.__name}>"

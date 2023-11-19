@@ -4,11 +4,12 @@ from Field import Field
 
 class XMLFactory:
 
-    def __init__(self,field_list):
+    def __init__(self,field_list,worksheet):
 
         self.__field_list = field_list
-        self.__contact = "(11) 123-456"
-        self.__body = []
+        self.__body = [TagFactory(declaration_tag=True)]
+        self.__worksheet = worksheet
+        
 
     def build(self):
 
@@ -19,32 +20,33 @@ class XMLFactory:
 
         return msg 
 
-    def make_xml(self,worksheet):
+    def __make_set(self,set,row):
+
+        parent = TagFactory(set.tag_name)
+        for column in set.column:
+            parent.append_child(TagFactory("url_img",self.__worksheet[f"{column}{row}"].value,True))
+
+        return parent
+
+        
+
+
+    def make_xml(self):
+
         ads = TagFactory("ads")
 
-        for i in range(2,worksheet.max_row):
+        for i in range(2,self.__worksheet.max_row):
 
             ad = TagFactory("ad")
 
             for j in range(0,len(self.__field_list)):
-                ad.append_child(TagFactory(self.__field_list[j].tag_name,worksheet[self.__field_list[j].column][i].value,self.__field_list[j].cdata))
+
+                if type(self.__field_list[j].column) != list:
+                    ad.append_child(TagFactory(self.__field_list[j].tag_name,self.__worksheet[self.__field_list[j].column][i].value,self.__field_list[j].cdata))
+                else:
+                    ad.append_child(self.__make_set(self.__field_list[j],i))
+                    break
 
             ads.append_child(ad)
 
         self.__body.append(ads)
-
-    #    #cria tag de anuncio e acrecenta dentro do conjuto ads
-    #    for i in range(1,tb.get_worksheet().max_row): 
-
-    #        child = TagFactory(child_name)
-
-    #        for j in range(0,len(self.__columns)):
-
-    #            if(self.__columns[j] == list):
-
-
-    #            ad.append_child(TagFactory(tags_names[j],tb.get_column(columns[j])[i].value,True))
-
-    #        parent.append_child(ad)
-
-    
