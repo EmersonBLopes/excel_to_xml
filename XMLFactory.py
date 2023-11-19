@@ -11,18 +11,20 @@ class XMLFactory:
         self.__worksheet = worksheet
         
 
-    def build(self):
+    def genarate_xml(self):
 
-        msg = ""
+        output = ""
 
         for tag in self.__body:
-            msg += str(tag)
+            output += str(tag)
 
-        return msg 
+
+        with open("saida.xml","w",encoding="utf-8") as file:
+            file.write(output)
 
     def __make_set(self,set,row):
 
-        parent = TagFactory(set.tag_name)
+        parent = TagFactory("pictures")
         for column in set.column:
             parent.append_child(TagFactory("url_img",self.__worksheet[f"{column}{row}"].value,True))
 
@@ -31,7 +33,7 @@ class XMLFactory:
         
 
 
-    def make_xml(self):
+    def make_ads(self):
 
         ads = TagFactory("ads")
 

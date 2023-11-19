@@ -1,22 +1,29 @@
 from Tabela import Tabela
+from UserController import UserController
 from TagFactory import TagFactory
 from XMLFactory import XMLFactory
-from Field import Field
 
-tb = Tabela("planilha_base.xlsx","Página2")
-columns = ["AK","A","k","G","B","D",["E","F","G"]]
-tags_names = ["title","city","price","url","description","contact","pictures"]
+flag = False
+user = UserController()
 
-field_list = []
+while(not(flag)):
 
-for i in range(0,len(columns)):
+    planilha = "BDI.xlsx"#input("Digite o nome da planilha que deseja trabalhar:")
+    pagina =   "DADOS INCOMPLETOS"#input("Digite o nome da pagina que deseja trabalhar:")
 
-    if type(columns[i]) != list:
-        field_list.append(Field(columns[i],tags_names[i],True))
-    else:
-        for column in columns[i]:
-            field_list.append(Field(columns[i],"url_img",True))
-    
-xml_builder = XMLFactory(field_list,tb.get_worksheet())
-xml_builder.make_xml()
-print(xml_builder.build())
+    try:
+        tb = Tabela(planilha,pagina)
+        flag = True 
+
+    except Exception as ex:
+
+        if type(ex) == KeyError:
+            print("Pagina não encontrada.")
+        else:
+            print("Planilha não encontrada.")
+
+
+xml_builder = XMLFactory(user.create_fields(),tb.get_worksheet())
+xml_builder.make_ads()
+
+xml_builder.genarate_xml()
