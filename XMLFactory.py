@@ -4,11 +4,11 @@ from Field import Field
 
 class XMLFactory:
 
-    def __init__(self,field_list,worksheet):
+    def __init__(self,field_list,workbook):
 
         self.__field_list = field_list
         self.__body = [TagFactory(declaration_tag=True)]
-        self.__worksheet = worksheet
+        self.__workbook = workbook 
         
 
     def genarate_xml(self):
@@ -26,7 +26,7 @@ class XMLFactory:
 
         parent = TagFactory("pictures")
         for column in set.column:
-            parent.append_child(TagFactory("url_img",self.__worksheet[f"{column}{row}"].value,True))
+            parent.append_child(TagFactory("url_img",self.__workbook.get_worksheet()[f"{column}{row}"].value,True))
 
         return parent
 
@@ -37,14 +37,18 @@ class XMLFactory:
 
         ads = TagFactory("ads")
 
-        for i in range(2,self.__worksheet.max_row):
+        for i in range(2,self.__workbook.max_row):
 
             ad = TagFactory("ad")
 
             for j in range(0,len(self.__field_list)):
 
                 if type(self.__field_list[j].column) != list:
-                    ad.append_child(TagFactory(self.__field_list[j].tag_name,self.__worksheet[self.__field_list[j].column][i].value,self.__field_list[j].cdata))
+                    if self.__field_list[j].tag_name != "contact":
+                        ad.append_child(TagFactory(self.__field_list[j].tag_name,self.__workbook.get_worksheet()[self.__field_list[j].column][i].value,self.__field_list[j].cdata))
+                    else:
+                        ad.append_child(TagFactory(self.__field_list[j].tag_name,int(self.__workbook.get_worksheet()[self.__field_list[j].column][i].value),self.__field_list[j].cdata))
+
                 else:
                     ad.append_child(self.__make_set(self.__field_list[j],i))
                     break
