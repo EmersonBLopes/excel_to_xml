@@ -9,7 +9,7 @@ user = UserController()
 while(not(flag)):
 
     planilha = "BDI.xlsx"#input("Digite o nome da planilha que deseja trabalhar:")
-    pagina =   "DADOS SEM FORMULA"#input("Digite o nome da pagina que deseja trabalhar:")
+    pagina =   "DADOS INCOMPLETOS"#input("Digite o nome da pagina que deseja trabalhar:")
 
     try:
         tb = Tabela(planilha,pagina)

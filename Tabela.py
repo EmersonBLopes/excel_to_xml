@@ -11,7 +11,7 @@ class Tabela:
     @property
     def max_row(self):
         
-        row_count = 0
+        row_count = 1
         empty_row = False
 
         while(not(empty_row)):

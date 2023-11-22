@@ -30,9 +30,6 @@ class XMLFactory:
 
         return parent
 
-        
-
-
     def make_ads(self):
 
         ads = TagFactory("ads")
@@ -44,7 +41,7 @@ class XMLFactory:
             for j in range(0,len(self.__field_list)):
 
                 if type(self.__field_list[j].column) != list:
-                    if self.__field_list[j].tag_name != "contact":
+                    if self.__field_list[j].tag_name != "contact" and self.__field_list[j].tag_name != "price":
                         ad.append_child(TagFactory(self.__field_list[j].tag_name,self.__workbook.get_worksheet()[self.__field_list[j].column][i].value,self.__field_list[j].cdata))
                     else:
                         ad.append_child(TagFactory(self.__field_list[j].tag_name,int(self.__workbook.get_worksheet()[self.__field_list[j].column][i].value),self.__field_list[j].cdata))
