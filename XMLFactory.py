@@ -13,6 +13,9 @@ class XMLFactory:
 
     def genarate_xml(self):
 
+        if(len(self.__body) == 1):
+            self.make_ads()
+
         output = ""
 
         for tag in self.__body:
